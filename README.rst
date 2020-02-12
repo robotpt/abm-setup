@@ -1,11 +1,11 @@
 README
 ======
 
-.. note::
-
-    This is actively being written
+*Note that this is actively being written*
 
 Instructions to setup a QT robot for the ABM SBIR study.
+
+.. contents::
 
 Instructions
 ------------
