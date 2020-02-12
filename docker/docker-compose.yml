@@ -1,0 +1,43 @@
+version: '3.4'
+
+services:
+  abm_interaction:
+    build:
+      context: ./dockerfiles/
+      dockerfile: abm_qt_nuc
+      network: host
+    environment:
+      DISPLAY: $DISPLAY
+      QT_GRAPHICSSYSTEM: native
+      ROS_DISTRO: kinetic
+      ROS_MASTER_URI: $ROS_MASTER_URI
+      IS_DOCKER_ENV: "true"
+    privileged: true
+    network_mode: host
+    devices: 
+      - /dev/dri:/dev/dri
+      - /dev/snd:/dev/snd
+    volumes:
+      - state:/root/state/
+      - workspace:/root/ws/
+      - atom_config:/root/.atom/
+      - pycharm_config:/root/.PyCharmCE2019.2/
+      - aws_config:/root/.aws/
+      - visual_code_config:/root/.visual_code/
+      - ./config/setup_script.sh:/root/.setup_script.sh:ro
+      - ./shared/:/root/shared/
+      - ~/.gitconfig/:/root/.gitconfig/:ro
+      - ~/.vimrc/:/root/.vimrc/:ro
+      - ~/.vim/:/root/.vim/:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    working_dir: /root/ws/
+    command: bash -c "terminator -e \"echo 'Entering Docker Container...' && bash\""
+
+volumes:
+  state:
+  workspace:
+  pycharm_config:
+  atom_config:
+  visual_code_config:
+  aws_config:
