@@ -259,31 +259,57 @@ You will need to make a Fitbit "app" for each Fitbit device.  We are interested 
         * A generated code
 
 
+Setting up our interaction
+--------------------------
+
+0. Open a terminal.
+
+1. Clone this repository onto QT's body computer::
+
+    git clone https://github.com/robotpt/abm-setup ~/abm-setup
+
+2. Run a script to allow for updates::
+
+    sudo bash ~/abm-setup/scripts/nuc_setup.bash
+
+3. Setup Docker:
+
     a. Install Docker::
 
         curl -fsSL https://get.docker.com -o get-docker.sh
         sh get-docker.sh
 
-    b. Set Docker to run without `sudo`::
+    b. Set Docker to run without :code:`sudo`::
 
         sudo groupadd docker
         sudo gpasswd -a $USER docker
         newgrp docker
 
-    c. Test that Docker is installed correctly and works without `sudo`::
+    c. Test that Docker is installed correctly and works without :code:`sudo`::
 
         docker run hello-world
 
-2. Setup Docker-compose:
-   
-    a. Install Docker-compose:: 
+    .. figure:: images/hello_from_docker.png
+        :align: center
+
+        What is printed from running the :code:`hello-world` docker container.
+
+
+4. Setup Docker-compose:
+
+    a. Install Docker-compose::
 
         sudo curl -L "https://github.com/docker/compose/releases/download/1.25.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
         sudo chmod +x /usr/local/bin/docker-compose
 
     b. Check that docker compose is installed correctly::
-        
+
         docker-compose version
 
-3. Run the docker container
+
+5. Run the docker container
+
+.. warning::
+
+    Leftoff here
 
