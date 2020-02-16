@@ -9,7 +9,7 @@ sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31
 sudo apt-get update -y && apt-get upgrade -y
 
 sudo apt-get install -y \
-    ros-kinetic-audio-common \
     python-pyaudio \
     luakit \
-    libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
+    libgstreamer1.0-dev libgstreamer-plugins-base1.0-deva \
+    dphys-swapfile
