@@ -192,6 +192,72 @@ For QT to speak, we use Amazon Polly, which requires an Amazon Web Services acco
 
     It is best practice to create separate accounts with less access than your root account and use those access keys, see `Amazon's security best practices <https://aws.amazon.com/blogs/security/getting-started-follow-security-best-practices-as-you-configure-your-aws-resources/>`_.
 
+Getting your Fitbit credentials
+-------------------------------
+
+You will need to make a Fitbit "app" for each Fitbit device.  We are interested in the Client ID, Client Secret, and a generated code that saves us from having to login on a web browser.
+
+1. `Create a Fitbit account <https://dev.fitbit.com/login>`_ for each Fitbit device.
+
+2. Login to your Fitbit account.
+
+3. Go to `register an app <https://dev.fitbit.com/apps/new>`_
+
+4. Fill in the application. You can put whatever you think makes sense for most of them (URL, policy, etc.).  (Make sure you include the `http` part int he urls.)  The following are the parts that matter to get access to the Intraday data.
+
+   * "OAuth 2.0 Application Type" should be "Personal"
+
+   * "Callback URL" should be `http://localhost`
+
+   * "Default Access Type" should be "Read-Only"
+
+   .. figure:: images/fitbit_application.png
+        :align: center
+
+        An example of what should be in the Fitbit app application
+
+5. On the registered app's page, record your Client ID and Client Secret, and then click "OAuth 2.0 tutorial page," near the bottom.
+
+   .. figure:: images/registered_app.png
+        :align: center
+
+        The registered app page.
+
+6. On the Oauth2.0 tutorial page, set "Flow type" to "Authorization Code Flow."
+
+    .. figure:: images/oauth2_tutorial.png
+        :align: center
+
+        Oauth2.0 tutorial page with "Flow type" set to "Authorization Code Flow."
+
+    .. note::
+
+        The "Expires In(ms)" text field is only used for "Implicit Grant Flow." "Authorization Code Flow," what we are using, expires in a fixed time (8 hours), but we are able to renew our authorization.
+
+7. Click the URL above "1A Get Code." You'll be brought to an error page, but that's okay.  We need the code from the URL. Record that code.
+
+    .. figure:: images/fitbit_code.png
+        :align: center
+
+        The page that you arrive at when clicking the URL above "1A Get Code."  The code we are interested in in the URL is highlighted.
+
+    .. warning::
+
+        If the URL is longer than in the picture, go back to the OAuth2.0 tutorial page and make sure that you have the "Flow type" set to "Authorization Code Flow," not "Implicit Grant Flow."
+
+
+    .. note::
+
+        The code obtained in this step only works once.  After you use it to initialize a Fitbit client, it cannot be used again.  We use it to obtain an access and refresh token for talking to Fitbit's web API.  If you need to reset Fitbit credentials for any reason, you will have to go to the OAuth2.0 tutorial page and get a new code.
+
+.. summary::
+
+    From this section, you should have the following information:
+
+        * Client ID
+        * Client Secret
+        * A generated code
+
 
     a. Install Docker::
 
