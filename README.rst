@@ -57,12 +57,43 @@ When you connect a monitor to QT and turn QT on, you will start on QT's body com
 Accessing QT's head computer
 ----------------------------
 
-On QT's body computer (the NUC)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+To setup the head, you must Secure-SHell into it (SSH) from QT's body computer.  To do this
 
-0. Clone this repository onto QT's body computer
+0. Turn on QT.
 
-1. Setup Docker
+1. Open a terminal.
+
+2. Type the following and hit return::
+
+    ssh qtrobot@192.168.100.1
+
+Head
+====
+
+
+Turning off the default face
+----------------------------
+
+0. Secure-Shell (SSH) into QT's head computer.
+
+1. Update QT::
+
+    cd ~/robot/packages/deb
+    git pull
+    sudo dpkg -i ros-kinetic-qt-robot-interface_1.1.8-0xenial_armhf.deb
+
+2. Reboot QT with :code:`sudo reboot` and SSH into QT's head computer again.
+
+3. Edit a configuration file to turn off QT's default face:
+
+    a. Open the configuration file::
+
+        sudo nano /opt/ros/kinetic/share/qt_robot_interface/config/qtrobot-interface.yaml
+
+    b. Change the line that says :code:`disable_interface: false` to :code:`disable_interface: true`
+
+    c. Reboot QT with :code:`sudo reboot` and you should see a black screen with a white box on QT's head screen.
+
 
     a. Install Docker::
 
