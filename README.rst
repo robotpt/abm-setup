@@ -176,6 +176,22 @@ Setting up our code
 
         What you should see if the head nodes are running correctly.
 
+Body
+====
+
+Getting your Amazon Web Service credentials
+-------------------------------------------
+
+For QT to speak, we use Amazon Polly, which requires an Amazon Web Services account. At our current usage, using `Amazon Polly is free up to a certain level <https://aws.amazon.com/polly/pricing/>`_), but you will need a credit card to create an account.
+
+1. `Create an Amazon Web Services account <https://portal.aws.amazon.com/billing/signup#/start>`_.
+2. Once you sign in, in the top right of the page, click your account name (mine says "Audrow"), then in the drop-down menu click "My Security Credentials," then click "Create New Access Key."
+3. Record your access key and keep it somewhere safe.  You can do this by downloading this or just viewing it and copy-pasting it to somewhere for later reference.
+
+.. note ::
+
+    It is best practice to create separate accounts with less access than your root account and use those access keys, see `Amazon's security best practices <https://aws.amazon.com/blogs/security/getting-started-follow-security-best-practices-as-you-configure-your-aws-resources/>`_.
+
 
     a. Install Docker::
 
