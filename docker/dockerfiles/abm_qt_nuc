@@ -150,5 +150,3 @@ RUN \
 RUN \
 	cd /root/ws/catkin_ws \
 	&& /bin/bash -c "source /opt/ros/kinetic/setup.bash && catkin_make"
-
-

@@ -32,7 +32,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     working_dir: /root/ws/
-    command: bash -c "terminator -e \"echo 'Entering Docker Container...' && bash\""
+    #command: bash -c "terminator -e \"echo 'Entering Docker Container...' && bash\""
 
 volumes:
   state:
