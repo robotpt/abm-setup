@@ -1,12 +1,6 @@
-######
-README
-######
-
-.. warning::
-
-    This is actively being written*
-
-Instructions to setup a QT robot for the ABM SBIR study.
+#################################
+ABM Interaction Setup on QT Robot
+#################################
 
 .. contents::
 
