@@ -258,9 +258,9 @@ You will need to make a Fitbit "app" for each Fitbit device.  We are interested 
 Setting up our interaction
 --------------------------
 
-0. Open a terminal.
+0. Change your system timezone to be in your current timezone.  To do this, you can click the time in the upper-right of the desktop on QT and select your city.
 
-1. Clone this repository onto QT's body computer::
+1. Open a terminal and clone this repository onto QT's body computer::
 
     git clone https://github.com/robotpt/abm-setup ~/abm-setup
 
@@ -394,12 +394,13 @@ Known issues
 
 Critical
 ========
-* Tablet doesn't allow off-checkin interaction to be initiated if refreshed
 * Wakeup for AM checkin doesn't seem to work if checkin time is changed, maybe only for the same day
+* Fitbit connection error on bootup -- Possibly fixed
 
-Inconvenient
+Not critical
 ============
 * With rare chance, audio may be skipped (PyAudio error)
+* Sometimes beginning of sound is cut off
 
 Little fixes
 ============
