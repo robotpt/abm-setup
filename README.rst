@@ -307,7 +307,71 @@ Setting up our interaction
         docker-compose version
 
 
-5. Run the docker container
+5. Setup the docker container:
+
+    .. note::
+
+        The first time that you run the Docker script, it will take around 15 minutes to setup the container.  After that, it will be fast.  Feel free to take a break or go get coffee :-)
+
+    a. Go to the :code:`docker` directory in the :code:`abm-setup` folder::
+
+        cd ~/abm-setup/docker
+
+    b. Run the :code:`docker.sh` script with the :code:`setup` option::
+
+        bash docker.sh setup
+
+    c. Enter your Fitbit and Amazon Web Services credentials as prompted.
+
+    d. You will then be shown the URLs where the tablet GUI will be hosted.  There will be a few of them.  We want one that starts with "192", rather than "127" or "10", because it will accept connections from other devices on the local network.  Write down the relevant address.
+
+        .. figure:: images/start_gui_server.png
+            :align: center
+
+            An example of the URLs that that the interaction will use.  In this case, we want to write down :code:`http://192.168.6.8:8082`.
+
+        .. note::
+
+            If you don't see an address with "192" at the beginning, try changing QT to a different wireless network.
+
+     e. Hit Ctrl+C to close the container.
+
+6. Run the interaction:
+
+    a. Make sure that you're in the :code:`docker` directory in the :code:`abm-setup` folder::
+
+        cd ~/abm-setup/docker
+
+    b. Run the :code:`docker.sh` script with the :code:`run` option::
+
+        bash docker.sh run
+
+    .. figure:: images/docker_run.png
+        :align: center
+
+        An example of the final message after the interaction run script.
+
+    c. Make the interaction run on startup:
+
+        i. List your Docker containers::
+
+            docker container ls
+
+        .. figure:: images/docker_container_list.png
+            :align: center
+
+            An example of running containers.
+
+        ii. Copy the "CONTAINER ID".
+
+        iii. Update the container's restart policy::
+
+              docker container update --restart=unless-stopped <YOUR COPIED CONTAINER ID>
+
+.. note::
+
+    To test that things are setup correctly, you can take the URL for the GUI that you wrote down and type it into the web-browser on any device that's on the same network.  QT should begin asking you about your name, if it is your first interaction.
+
 
 .. warning::
 
