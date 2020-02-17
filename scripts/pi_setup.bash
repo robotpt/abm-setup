@@ -11,5 +11,5 @@ sudo apt-get update -y && apt-get upgrade -y
 sudo apt-get install -y \
     python-pyaudio \
     luakit \
-    libgstreamer1.0-dev libgstreamer-plugins-base1.0-deva \
+    libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev \
     dphys-swapfile
