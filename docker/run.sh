@@ -11,17 +11,12 @@ case "$1" in
 		echo "Calling setup script"
 		ROS_MASTER_URI=$ROS_MASTER_URI docker-compose run $SERVICE_NAME bash -c "source ~/ws/catkin_ws/devel/setup.bash && roslaunch abm_interaction setup_abm_interaction.launch"
 		;;
-	run )
+	run | start | up )
 		echo "Running in the background"
 		ROS_MASTER_URI=$ROS_MASTER_URI docker-compose run -d $SERVICE_NAME bash -c "source ~/ws/catkin_ws/devel/setup.bash && roslaunch abm_interaction qt_abm_interaction.launch"
 		;;
-	stop )
-		read -p "Are you sure that you want to stop the running containers?" -n 1 -r
-		echo    # (optional) move to a new line
-		if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-			docker-compose down
-		fi
-		ROS_MASTER_URI=$ROS_MASTER_URI docker-compose down
+	stop | kill | down )
+		docker-compose down
 		;;
 	debug )
 		echo "Starting debug"
