@@ -22,6 +22,8 @@ What you'll need
 * Wireless internet
 * An `Amazon Web Services <https://aws.amazon.com/>`_ account
 * An account with `Fitbit <https://www.fitbit.com/setup/>`_
+* A tablet for the user interface
+* A Google account to get an app for the tablet
 
 QT has two ports: one USB-C and one USB-A.  You'll need to use the USB-C port for display and figure out how to control a mouse and keyboard.  I suggest a USB-C hub that has a display port that you can use (USB-C or HDMI, for example) and has USB-A ports for your mouse and keyboard.  Alternatively, you can use a USB-A hub to connect your mouse and keyboard to QT.
 
@@ -250,7 +252,7 @@ You will need to make a Fitbit "app" for each Fitbit device.  We are interested 
 
         The code obtained in this step only works once.  After you use it to initialize a Fitbit client, it cannot be used again.  We use it to obtain an access and refresh token for talking to Fitbit's web API.  If you need to reset Fitbit credentials for any reason, you will have to go to the OAuth2.0 tutorial page and get a new code.
 
-.. summary::
+.. note::
 
     From this section, you should have the following information:
 
@@ -372,8 +374,38 @@ Setting up our interaction
 
     To test that things are setup correctly, you can take the URL for the GUI that you wrote down and type it into the web-browser on any device that's on the same network.  QT should begin asking you about your name, if it is your first interaction.
 
+Tablet
+======
 
-.. warning::
+For either tablet supplied by LuxAI with QT, or any Android tablet for that matter, we're going to set up the tablet to run as a Kiosk using the app `Fully Kiosk Browser <https://www.ozerov.de/fully-kiosk-browser/>`_.
 
-    Leftoff here
+1. Sign on to the Google Play Store.
 
+2. Search for and download `Fully Kiosk Browser`.
+
+3. Start `Fully Kiosk browser` and set the start URL to the GUI URL that you wrote down earlier.
+
+4. Adjust settings in `Fully Kiosk browser`:
+
+    i. In 'Settings > Web Zoom and Scaling', disable 'Enable Zoom'
+
+    ii. In 'Settings > Web Auto Reload', set 'Auto Reload after Page Error' to '2'.
+
+With this app, you can make it so that it's challenging to get out of the app or do other things on the tablet.  You can go into 'Settings > Kiosk Mode (PLUS)' to play with these settings.  A plus license is 6.90 EUR per device (about 7.50 USD).
+
+
+************
+Known issues
+************
+
+Critical
+========
+* Tablet doesn't allow off-checkin interaction to be initiated if refreshed
+* Wakeup for AM checkin doesn't seem to work if checkin time is changed, maybe only for the same day
+
+Inconvenient
+============
+* With rare chance, audio may be skipped (PyAudio error)
+
+Little fixes
+============
