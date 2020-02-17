@@ -9,6 +9,3 @@ Contents:
 
    setup
    known_issues
-
-* :ref:`search`
-

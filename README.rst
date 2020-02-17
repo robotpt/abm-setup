@@ -1,7 +1,8 @@
 QT SETUP
 ========
 
-License
--------
+.. image:: https://readthedocs.org/projects/abm-setup/badge/?version=latest
+    :target: https://abm-setup.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
 
-The project is licensed under the MIT license.
+See the `ReadTheDocs page <https://abm-setup.readthedocs.io/en/latest/index.html>`_

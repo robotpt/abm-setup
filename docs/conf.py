@@ -10,7 +10,7 @@ source_suffix = '.rst'
 # The master toctree document.
 master_doc = 'index'
 
-project = u'ABM interaction setup'
+project = u'ABM Interaction Setup'
 copyright = u'2020, Audrow Nash'
 version = '1.0'
 release = '1.0'
