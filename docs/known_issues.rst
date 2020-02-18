@@ -11,3 +11,8 @@ Not critical
 
 Little fixes
 ------------
+
+Planned changes in the interaction
+==================================
+* Sync Fitbit during a conversation if they choose to
+* Option to checkin early if they meet their walk goal
