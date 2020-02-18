@@ -63,7 +63,9 @@ Head
 Turning off the default face
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-0. Secure-Shell (SSH) into QT's head computer.
+0. Secure-Shell (SSH) into QT's head computer::
+
+    ssh qtrobot@192.168.100.1
 
 1. Update QT::
 
@@ -71,9 +73,11 @@ Turning off the default face
     git pull
     sudo dpkg -i ros-kinetic-qt-robot-interface_1.1.8-0xenial_armhf.deb
 
-2. Reboot QT with :code:`sudo reboot` and SSH into QT's head computer again.
+.. note::
 
-3. Edit a configuration file to turn off QT's default face:
+    If the :code:`git pull` step fails, the head computer might be having trouble with it its network.  You can check this with :code:`ping google.com`.  If there's nothing, there is a problem with the network.  To fix this, the best think we've found is to restart QT: :code:`sudo reboot`.
+
+2. Edit a configuration file to turn off QT's default face:
 
     a. Open the configuration file::
 
@@ -81,12 +85,16 @@ Turning off the default face
 
     b. Change the line that says :code:`disable_interface: false` to :code:`disable_interface: true`
 
-    c. Reboot QT with :code:`sudo reboot` and you should see a black screen with a white box on QT's head screen.
+.. note ::
+
+    You can reboot to see these changes take effect, or continue on and we'll reboot eventually.
 
 Setting up our code
 ^^^^^^^^^^^^^^^^^^^
 
-0. Secure-Shell (SSH) into QT's head computer.
+0. Secure-Shell (SSH) into QT's head computer::
+
+    ssh qtrobot@192.168.100.1
 
 1. Install our project's dependencies::
 
@@ -105,7 +113,7 @@ Setting up our code
 
     c. Set `CONF_SWAPFACTOR` to 2 by changing the line that says :code:`#CONF_SWAPFACTOR=2` to :code:`CONF_SWAPFACTOR=2`, that is by deleting the :code:`#` character to uncomment the line. 
 
-    d. Save and exit :code:`nano` by hitting Ctrl+x and then typing 'y'.
+    d. Save and exit :code:`nano` by hitting Ctrl+x, then typing 'y', and then hitting Enter twice to confirm things.
 
     e. Turn the swap file back on::
 
@@ -126,6 +134,10 @@ Setting up our code
 
         cd ~/catkin_ws
         catkin_make
+
+    .. note::
+
+        It takes around five minutes for this command to finish.  You can setup QT's body computer at the same time as it runs, if you like. 
 
 4. Setup our code to run when QT's head computer turns on.
 
@@ -234,7 +246,6 @@ You will need to make a Fitbit "app" for each Fitbit device.  We are interested 
 
         If the URL is longer than in the picture, go back to the OAuth2.0 tutorial page and make sure that you have the "Flow type" set to "Authorization Code Flow," not "Implicit Grant Flow."
 
-
     .. note::
 
         The code obtained in this step only works once.  After you use it to initialize a Fitbit client, it cannot be used again.  We use it to obtain an access and refresh token for talking to Fitbit's web API.  If you need to reset Fitbit credentials for any reason, you will have to go to the OAuth2.0 tutorial page and get a new code.
@@ -251,7 +262,7 @@ You will need to make a Fitbit "app" for each Fitbit device.  We are interested 
 Setting up our interaction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-0. Change your system timezone to be in your current timezone.  To do this, you can click the time in the upper-right of the desktop on QT and select your city.
+0. Change your system timezone to be in your current timezone.  To do this, you can click the time in the upper-right of the desktop on QT and then click 'Time & Date settings...'
 
 1. Open a terminal and clone this repository onto QT's body computer::
 
@@ -260,6 +271,10 @@ Setting up our interaction
 2. Run a script to allow for updates::
 
     sudo bash ~/abm-setup/scripts/nuc_setup.bash
+
+.. note::
+
+    This step takes five minutes or so.
 
 3. Setup Docker:
 
@@ -358,6 +373,8 @@ Setting up our interaction
               docker container update --restart=unless-stopped <YOUR COPIED CONTAINER ID>
 
 .. note::
+
+    At this point, you should reboot QT.  You can do this by either pushing the button on the back of QT or typing :code:`sudo reboot` into the head computer's terminal.
 
     To test that things are setup correctly, you can take the URL for the GUI that you wrote down and type it into the web-browser on any device that's on the same network.  QT should begin asking you about your name, if it is your first interaction.
 
