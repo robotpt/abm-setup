@@ -16,3 +16,7 @@ Planned changes in the interaction
 ==================================
 * Sync Fitbit during a conversation if they choose to
 * Option to checkin early if they meet their walk goal
+
+Suggestions / Bug report
+========================
+For suggested improvements or bugs to report, please email Audrow Nash at `audrow.nash@gmail.com <audrow.nash@gmail.com>`_.
