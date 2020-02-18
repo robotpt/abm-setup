@@ -32,7 +32,7 @@ To turn off QT, there are two options:
 
     2. Login to the head computer (see below) and do :code:`sudo shutdown`.
 
-Note that if you do :code:`sudo shutdown` on the body computer, you only turn off the body computer---the head computer is still on.
+If you do :code:`sudo shutdown` on the body computer, you only turn off the body computer---the head computer is still on.
 
 .. note::
 
@@ -85,7 +85,7 @@ Turning off the default face
 
     b. Change the line that says :code:`disable_interface: false` to :code:`disable_interface: true`
 
-.. note ::
+.. note::
 
     You can reboot to see these changes take effect, or continue on and we'll reboot eventually.
 
@@ -165,10 +165,11 @@ Setting up our code
 
         iv. Click 'Save' and then 'Return' twice.
 
-        v. Click 'Reboot'.
-
 .. note::
-    Confirm that things are running by opening a terminal with the following command.  You should see both :code:`/sound_listener` and :code:`/start_face_server`::
+
+    You can reboot to see these changes take effect, or continue on and we'll reboot eventually.
+
+    If you'd like, you can confirm that things are running after a reboot by opening a terminal and running the following command.  You should see both :code:`/sound_listener` and :code:`/start_face_server`::
 
        rosnode list | grep "/\(sound_listener\|start_face_server\)"
 
@@ -189,7 +190,7 @@ For QT to speak, we use Amazon Polly, which requires an Amazon Web Services acco
 2. Once you sign in, in the top right of the page, click your account name (mine says "Audrow"), then in the drop-down menu click "My Security Credentials," then click "Create New Access Key."
 3. Record your access key and keep it somewhere safe.  You can do this by downloading this or just viewing it and copy-pasting it to somewhere for later reference.
 
-.. note ::
+.. note::
 
     It is best practice to create separate accounts with less access than your root account and use those access keys, see `Amazon's security best practices <https://aws.amazon.com/blogs/security/getting-started-follow-security-best-practices-as-you-configure-your-aws-resources/>`_.
 
@@ -324,6 +325,10 @@ Setting up our interaction
     b. Run the :code:`docker.sh` script with the :code:`setup` option::
 
         bash docker.sh setup
+
+    .. note::
+
+        I did have an error occur during this command one of the times I was setting it up.  It might have been a network issue.  I ran it again and it succeeded.  If you have trouble here let me know.
 
     c. Enter your Fitbit and Amazon Web Services credentials as prompted.
 
