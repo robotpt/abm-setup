@@ -127,24 +127,20 @@ RUN \
 	&& python3.6 -m pip install --ignore-installed pyyaml \
 	&& rm -rf /var/lib/apt/lists/* 
 
-# Setup Python3.8 
-RUN \
-	apt-get update -y && apt-get upgrade -y \
-	&& apt-get install -y python3.8-dev \
-	&& rm -rf /var/lib/apt/lists/* 
-
 # For convenience add a source script to bashrc and update without clearing
 RUN \
        echo 'source /root/.setup_script.sh' >> /root/.bashrc \
        && apt-get update -y && apt-get upgrade -y
 
 # Clone relevant repositories
+ENV version_tag "v1.0"
+ENV git_options "-b ${version_tag} --single-branch --recursive"
 RUN \
 	mkdir -p /root/ws/catkin_ws/src \
 	&& cd /root/ws/catkin_ws/src \
-	&& git clone --recursive https://github.com/robotpt/ros-abm-interaction \
-	&& git clone https://github.com/robotpt/qt-robot \
-	&& git clone https://github.com/robotpt/cordial
+	&& git clone ${git_options} https://github.com/robotpt/ros-abm-interaction \
+	&& git clone ${git_options} https://github.com/robotpt/qt-robot \
+	&& git clone ${git_options} https://github.com/robotpt/cordial
 
 # Build repositories
 RUN \
