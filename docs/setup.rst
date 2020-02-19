@@ -1,6 +1,8 @@
 Setup
 =====
 
+.. |version| replace:: v1.0
+
 What you'll need
 ----------------
 
@@ -96,10 +98,12 @@ Setting up our code
 
     ssh qtrobot@192.168.100.1
 
-1. Install our project's dependencies::
+1. Install our project's dependencies:
 
-    git clone https://github.com/robotpt/abm-setup ~/abm-setup
-    bash ~/abm-setup/scripts/pi_setup.bash
+    .. parsed-literal::
+
+        git clone -b |version| https://github.com/robotpt/abm-setup ~/abm-setup
+        bash ~/abm-setup/scripts/pi_setup.bash
 
 2. Increase the swap size, so we're able to build without running out of virtual memory:
 
@@ -125,10 +129,12 @@ Setting up our code
 
         cd ~/catkin_ws/src
 
-    b. Clone our repositories::
+    b. Clone our repositories:
 
-        git clone https://github.com/robotpt/cordial
-        git clone https://github.com/robotpt/qt-robot
+        .. parsed-literal::
+
+            git clone -b |version| https://github.com/robotpt/cordial
+            git clone -b |version| https://github.com/robotpt/qt-robot
 
     c. Build our workspace::
 
@@ -137,7 +143,7 @@ Setting up our code
 
     .. note::
 
-        It takes around five minutes for this command to finish.  You can setup QT's body computer at the same time as it runs, if you like. 
+        It takes around five minutes for this command to finish.  You can setup QT's body computer at the same time as it runs, if you like.
 
 4. Setup our code to run when QT's head computer turns on.
 
@@ -265,9 +271,11 @@ Setting up our interaction
 
 0. Change your system timezone to be in your current timezone.  To do this, you can click the time in the upper-right of the desktop on QT and then click 'Time & Date settings...'
 
-1. Open a terminal and clone this repository onto QT's body computer::
+1. Open a terminal and clone this repository onto QT's body computer:
 
-    git clone https://github.com/robotpt/abm-setup ~/abm-setup
+    .. parsed-literal::
+
+        git clone -b |version| https://github.com/robotpt/abm-setup ~/abm-setup
 
 2. Run a script to allow for updates::
 
