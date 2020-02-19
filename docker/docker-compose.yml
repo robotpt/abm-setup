@@ -19,7 +19,6 @@ services:
       - /dev/snd:/dev/snd
     volumes:
       - state:/root/state/
-      - workspace:/root/ws/
       - atom_config:/root/.atom/
       - pycharm_config:/root/.PyCharmCE2019.2/
       - aws_config:/root/.aws/
@@ -35,7 +34,6 @@ services:
 
 volumes:
   state:
-  workspace:
   pycharm_config:
   atom_config:
   visual_code_config:
