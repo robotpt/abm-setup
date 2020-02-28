@@ -26,6 +26,8 @@ RUN \
 		fonts-powerline \
 		meld \
 		nautilus \
+		vlc \
+	&& sed -i 's/geteuid/getppid/' /usr/bin/vlc \
 	&& rm -rf /var/lib/apt/lists/* 
 
 # Setup Pycharm
@@ -35,13 +37,6 @@ RUN \
 	&& tar xfz pycharm-*.tar.gz -C /opt/ \
 	&& rm pycharm-community.tar.gz \
 	&& echo 'alias pycharm="/opt/pycharm-community-2019.2.5/bin/pycharm.sh"' >> /root/.bashrc 
-
-# Install Atom
-RUN \
-	add-apt-repository ppa:webupd8team/atom \
-	&& apt-get update -y \
-	&& apt-get install -y atom \
-	&& rm -rf /var/lib/apt/lists/* 
 
 # Install Visual Studio Code
 RUN \
@@ -75,6 +70,7 @@ RUN \
 	apt-get update -y && apt-get upgrade -y \
 	&& apt-get install -y \
 	    alsa \
+	    gstreamer1.0-alsa \
 	&& apt-get install -y \
 		python \
 		python-pip \
@@ -84,6 +80,7 @@ RUN \
 		python-scipy \
 		vorbis-tools \
 		python-pyaudio \
+		python-mock \
         python-gst0.10 python-scipy \
 	&& python2 -m pip install --upgrade pip \
 	&& python2 -m pip install rospkg catkin_pkg \
@@ -127,22 +124,36 @@ RUN \
 	&& python3.6 -m pip install --ignore-installed pyyaml \
 	&& rm -rf /var/lib/apt/lists/* 
 
-# For convenience add a source script to bashrc and update without clearing
+# Setup MongoDB
 RUN \
-       echo 'source /root/.setup_script.sh' >> /root/.bashrc \
-       && apt-get update -y && apt-get upgrade -y
+	apt-get update -y && apt-get upgrade -y \
+	&& apt-get install -y \
+		python-pymongo \
+		mongodb \
+		scons \
+	&& rm -rf /var/lib/apt/lists/* 
 
 # Clone relevant repositories
-ENV version_tag "v1.0"
-ENV git_options "-b ${version_tag} --single-branch --recursive"
+# ENV version_tag "v1.0"
+# ENV git_options "-b ${version_tag} --single-branch --recursive"
+ENV git_options "--recursive"
 RUN \
 	mkdir -p /root/ws/catkin_ws/src \
 	&& cd /root/ws/catkin_ws/src \
 	&& git clone ${git_options} https://github.com/robotpt/ros-abm-interaction \
 	&& git clone ${git_options} https://github.com/robotpt/qt-robot \
-	&& git clone ${git_options} https://github.com/robotpt/cordial
+	&& git clone ${git_options} https://github.com/robotpt/cordial \
+	&& git clone ${git_options} https://github.com/robotpt/ros-data-capture \
+	&& git clone https://github.com/strands-project/mongodb_store
+
 
 # Build repositories
 RUN \
 	cd /root/ws/catkin_ws \
 	&& /bin/bash -c "source /opt/ros/kinetic/setup.bash && catkin_make"
+ENV DOCKER_BUCKET my-docker-bucket-123452435234
+
+# For convenience add a source script to bashrc and update without clearing
+RUN \
+       echo 'source /root/.setup_script.sh' >> /root/.bashrc \
+       && apt-get update -y && apt-get upgrade -y

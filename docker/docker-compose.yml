@@ -3,8 +3,7 @@ version: '3.4'
 services:
   abm_interaction:
     build:
-      context: ./dockerfiles/
-      dockerfile: abm_qt_nuc
+      context: .
       network: host
     environment:
       DISPLAY: $DISPLAY
@@ -19,6 +18,8 @@ services:
       - /dev/snd:/dev/snd
     volumes:
       - state:/root/state/
+        # - workspace:/root/ws
+      - mongodb_log:/root/mongodb_log
       - atom_config:/root/.atom/
       - pycharm_config:/root/.PyCharmCE2019.2/
       - aws_config:/root/.aws/
@@ -34,6 +35,8 @@ services:
 
 volumes:
   state:
+  mongodb_log:
+  workspace:
   pycharm_config:
   atom_config:
   visual_code_config:
