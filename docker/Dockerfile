@@ -1,5 +1,8 @@
 From osrf/ros:kinetic-desktop-full
 
+# Set frontend to avoid debconf display errors
+ENV DEBIAN_FRONTEND noninteractive
+
 # Install essentials
 RUN \
 	apt-get update -y && apt-get upgrade -y \
@@ -10,7 +13,6 @@ RUN \
 	&& apt-get install -y \
 		curl \
 		wget \
-		tmux \
 		tmux \
 		zsh \
 		curl \
@@ -74,10 +76,10 @@ RUN \
 	&& apt-get install -y \
 		python \
 		python-pip \
-		python-pygame \
-		python-requests \
-		python-serial \
-		python-scipy \
+		#python-pygame \
+		#python-requests \
+		#python-serial \
+		#python-scipy \
 		vorbis-tools \
 		python-pyaudio \
 		python-mock \
@@ -107,7 +109,8 @@ RUN \
 		python3-pip \
 		python3-yaml \
 		python3-virtualenv \
-	&& python3.6 -m pip install --upgrade pip \
+	&& python3.6 -m pip install --upgrade pip setuptools\
+	&& python3.6 -m pip install --ignore-installed docutils==0.15 \
 	&& python3.6 -m pip install \
 		rospkg \
 		catkin_pkg \
@@ -121,7 +124,7 @@ RUN \
 		freezegun \
 		func_timeout \
 		datetimerange \
-	&& python3.6 -m pip install --ignore-installed pyyaml \
+	&& python3.6 -m pip install --ignore-installed pyyaml==5.2 \
 	&& rm -rf /var/lib/apt/lists/* 
 
 # Setup MongoDB
@@ -132,6 +135,7 @@ RUN \
 		mongodb \
 		scons \
 	&& rm -rf /var/lib/apt/lists/* 
+
 
 # Clone relevant repositories
 # ENV version_tag "v1.0"
