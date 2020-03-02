@@ -71,22 +71,25 @@ RUN \
 RUN \
 	apt-get update -y && apt-get upgrade -y \
 	&& apt-get install -y \
-	    alsa \
-	    gstreamer1.0-alsa \
+		alsa \
+		gstreamer1.0-alsa \
+		vorbis-tools \
 	&& apt-get install -y \
 		python \
 		python-pip \
 		#python-pygame \
 		#python-requests \
 		#python-serial \
-		#python-scipy \
-		vorbis-tools \
-		python-pyaudio \
+		python-scipy \
+		python-gst0.10 \
 		python-mock \
-        python-gst0.10 python-scipy \
+		python-pyaudio \
 	&& python2 -m pip install --upgrade pip \
-	&& python2 -m pip install rospkg catkin_pkg \
-	&& python2 -m pip install boto3 soundfile \
+	&& python2 -m pip install \
+		rospkg \
+		catkin_pkg \
+		boto3==1.12.11 \
+		soundfile==0.10.3.post1 \
 	&& rm -rf /var/lib/apt/lists/* 
 
 # Setup HTTP server
@@ -109,21 +112,21 @@ RUN \
 		python3-pip \
 		python3-yaml \
 		python3-virtualenv \
-	&& python3.6 -m pip install --upgrade pip setuptools\
+	&& python3.6 -m pip install --upgrade pip setuptools \
 	&& python3.6 -m pip install --ignore-installed docutils==0.15 \
 	&& python3.6 -m pip install \
 		rospkg \
 		catkin_pkg \
 		catkin_tools \
-		awscli \
-		pandas \
-		dill \
-		requests \
-		hmmlearn \
-		schedule \
-		freezegun \
-		func_timeout \
-		datetimerange \
+		awscli==1.18.11 \
+		pandas==1.0.1 \
+		dill==0.3.1.1 \
+		requests==2.23.0 \
+		hmmlearn==0.2.3 \
+		schedule==0.6.0 \
+		freezegun==0.3.15 \
+		func_timeout==4.3.5 \
+		datetimerange==0.6.1 \
 	&& python3.6 -m pip install --ignore-installed pyyaml==5.2 \
 	&& rm -rf /var/lib/apt/lists/* 
 
