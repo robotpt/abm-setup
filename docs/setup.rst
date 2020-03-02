@@ -200,6 +200,25 @@ For QT to speak, we use Amazon Polly, which requires an Amazon Web Services acco
 
     It is best practice to create separate accounts with less access than your root account and use those access keys, see `Amazon's security best practices <https://aws.amazon.com/blogs/security/getting-started-follow-security-best-practices-as-you-configure-your-aws-resources/>`_.
 
+Setting up an Amazon Web Service bucket
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For storing the recorded audio and video we'll use an Amazon Web services S3 bucket.
+
+1. Login to `Amazon Web Services`_.
+
+2. In "Find Services" type "S3" and click it when it appears.
+
+3. Create your bucket:
+
+    a. Hit the "Create bucket" button.
+
+    b. Name your bucket and select US-West for the region.  Note that the name has to be globally unique, so you may have to add some random characters to it.
+
+    c. Continue through the setup process leaving things as they are set by default (no public access, etc.) and finally click "Create bucket"
+
+4. Write down the bucket name you have created.
+
 Getting your Fitbit credentials
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -330,7 +349,12 @@ Setting up our interaction
 
         cd ~/abm-setup/docker
 
-    b. Run the :code:`docker.sh` script with the :code:`setup` option::
+    b. Open the file called :code:`Dockerfile` and replace the name of the bucket exposed with the name of your Amazon Web Services bucket at the bottom of the file.  The line should, look similar to the following::
+
+        ENV AWS_BUCKET_NAME <your aws bucket's name>
+
+
+    c. Run the :code:`docker.sh` script with the :code:`setup` option::
 
         bash docker.sh setup
 
@@ -338,9 +362,9 @@ Setting up our interaction
 
         I did have an error occur during this command one of the times I was setting it up.  It might have been a network issue.  I ran it again and it succeeded.  If you have trouble here let me know.
 
-    c. Enter your Fitbit and Amazon Web Services credentials as prompted.
+    d. Enter your Fitbit and Amazon Web Services credentials as prompted.
 
-    d. You will then be shown the URLs where the tablet GUI will be hosted.  There will be a few of them.  We want one that starts with "192", rather than "127" or "10", because it will accept connections from other devices on the local network.  Write down the relevant address.
+    e. You will then be shown the URLs where the tablet GUI will be hosted.  There will be a few of them.  We want one that starts with "192", rather than "127" or "10", because it will accept connections from other devices on the local network.  Write down the relevant address.
 
         .. figure:: images/start_gui_server.png
             :align: center
@@ -351,7 +375,7 @@ Setting up our interaction
 
             If you don't see an address with "192" at the beginning, try changing QT to a different wireless network.
 
-     e. Hit Ctrl+C to close the container.
+     f. Hit Ctrl+C to close the container.
 
 6. Run the interaction:
 
