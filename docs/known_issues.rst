@@ -16,6 +16,7 @@ Planned changes in the interaction
 ==================================
 * Sync Fitbit during a conversation if they choose to
 * Option to checkin early if they meet their walk goal
+* Make morning checkin available before noon - ask would they like to checkin
 * Make the GUI timeout occur a set period of time after QT finishs speaking
 
 Suggestions / Bug report
