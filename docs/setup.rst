@@ -1,7 +1,7 @@
 Setup
 =====
 
-.. |version| replace:: v1.0
+.. |version| replace:: abm_pilot
 
 What you'll need
 ----------------

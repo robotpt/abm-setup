@@ -20,6 +20,7 @@ services:
       - state:/root/state/
         # - workspace:/root/ws
       - mongodb_log:/root/mongodb_log
+      - to_upload:/root/upload
       - atom_config:/root/.atom/
       - pycharm_config:/root/.PyCharmCE2019.2/
       - aws_config:/root/.aws/
@@ -36,6 +37,7 @@ services:
 volumes:
   state:
   mongodb_log:
+  to_upload:
   workspace:
   pycharm_config:
   atom_config:

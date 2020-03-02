@@ -141,11 +141,12 @@ RUN \
 
 
 # Clone relevant repositories
-# ENV version_tag "v1.0"
-# ENV git_options "-b ${version_tag} --single-branch --recursive"
+ENV commit_tag "abm_pilot"
+ENV git_options "-b ${commit_tag} --single-branch --recursive"
 ENV git_options "--recursive"
 RUN \
-	mkdir -p /root/ws/catkin_ws/src \
+	echo "Take 3" \
+	&& mkdir -p /root/ws/catkin_ws/src \
 	&& cd /root/ws/catkin_ws/src \
 	&& git clone ${git_options} https://github.com/robotpt/ros-abm-interaction \
 	&& git clone ${git_options} https://github.com/robotpt/qt-robot \
@@ -158,9 +159,12 @@ RUN \
 RUN \
 	cd /root/ws/catkin_ws \
 	&& /bin/bash -c "source /opt/ros/kinetic/setup.bash && catkin_make"
-ENV DOCKER_BUCKET my-docker-bucket-123452435234
 
 # For convenience add a source script to bashrc and update without clearing
 RUN \
-       echo 'source /root/.setup_script.sh' >> /root/.bashrc \
-       && apt-get update -y && apt-get upgrade -y
+	echo 'source /root/.setup_script.sh' >> /root/.bashrc \
+	&& apt-get update -y && apt-get upgrade -y \
+	&& unset DEBIAN_FRONTEND 
+
+# Change to your bucket
+ENV AWS_BUCKET_NAME my-new-bucket2378941903
