@@ -65,7 +65,7 @@ Head
 Turning off the default face
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-0. Secure-Shell (SSH) into QT's head computer::
+0. If you haven't already, SSH into QT's head computer::
 
     ssh qtrobot@192.168.100.1
 
@@ -86,6 +86,8 @@ Turning off the default face
         sudo nano /opt/ros/kinetic/share/qt_robot_interface/config/qtrobot-interface.yaml
 
     b. Change the line that says :code:`disable_interface: false` to :code:`disable_interface: true`
+
+    c. Save and exit :code:`nano` by hitting Ctrl+x, then typing 'y', and then hitting Enter twice to confirm things.
 
 .. note::
 
@@ -232,20 +234,24 @@ You will need to make a Fitbit "app" for each Fitbit device.  We are interested 
 
 4. Fill in the application. You can put whatever you think makes sense for most of them (URL, policy, etc.).  (Make sure you include the `http` part int he urls.)  The following are the parts that matter to get access to the Intraday data.
 
-   * "OAuth 2.0 Application Type" should be "Personal"
+    * "OAuth 2.0 Application Type" should be "Personal"
 
-   * "Callback URL" should be `http://localhost`
+    * "Callback URL" should be `http://localhost`
 
-   * "Default Access Type" should be "Read-Only"
+    * "Default Access Type" should be "Read-Only"
 
-   .. figure:: images/fitbit_application.png
+    .. warning::
+
+        If you get an error when trying to setup QT's body later, come back here and make sure things are correct.
+
+    .. figure:: images/fitbit_application.png
         :align: center
 
         An example of what should be in the Fitbit app application
 
 5. On the registered app's page, record your Client ID and Client Secret, and then click "OAuth 2.0 tutorial page," near the bottom.
 
-   .. figure:: images/registered_app.png
+    .. figure:: images/registered_app.png
         :align: center
 
         The registered app page.
@@ -300,6 +306,13 @@ Setting up our interaction
 
     sudo bash ~/abm-setup/scripts/nuc_setup.bash
 
+.. warning::
+
+    If this step fails, try the following commands before rerunning::
+
+        sudo apt install --reinstall python3-six
+        sudo apt install --reinstall python3-chardet
+
 .. note::
 
     This step takes five minutes or so.
@@ -345,24 +358,39 @@ Setting up our interaction
 
         The first time that you run the Docker script, it will take around 15 minutes to setup the container.  After that, it will be fast.  Feel free to take a break or go get coffee :-)
 
-    a. Go to the :code:`docker` directory in the :code:`abm-setup` folder::
+    a. Open the :code:`Dockerfile` with :code:`nano ~/abm-setup/docker/Dockerfile` and replace the name of the Amazon Web Services bucket. The line to change is at the bottom of the file and should be changed to :code:`ENV AWS_BUCKET_NAME <your aws bucket's name>` with whatever your bucket is named, for example, :code:`ENV AWS_BUCKET_NAME qt-robot-1`.
 
-        cd ~/abm-setup/docker
+    b. Run the :code:`docker.sh` script with the :code:`setup` option::
 
-    b. Open the file called :code:`Dockerfile` and replace the name of the bucket exposed with the name of your Amazon Web Services bucket at the bottom of the file.  The line should, look similar to the following::
-
-        ENV AWS_BUCKET_NAME <your aws bucket's name>
-
-
-    c. Run the :code:`docker.sh` script with the :code:`setup` option::
-
-        bash docker.sh setup
+        bash ~/abm-setup/docker/docker.sh setup
 
     .. note::
 
         I did have an error occur during this command one of the times I was setting it up.  It might have been a network issue.  I ran it again and it succeeded.  If you have trouble here let me know.
 
-    d. Enter your Fitbit and Amazon Web Services credentials as prompted.
+    d. Enter your Fitbit and Amazon Web Services credentials as prompted.  The following is the order they are asked in and what they look like / should be:
+
+        .. list-table::
+           :header-rows: 1
+           :align: center
+
+           * - Prompt
+             - Example / value
+           * - Fitbit Client ID
+             - :code:`22XXXX`
+           * - Fitbit Client Secret
+             - :code:`5912f5907faa693e3e6630XXXXXXXXXX`
+           * - Fitbit *Ultra Secret* Code
+             - :code:`6e843fa2b908b1f608b973b845b793XXXXXXXXXX`
+           * - AWS Access Key ID
+             - :code:`AKIAY2SYU4XXXXXXXXXX`
+           * - AWS Secret Access Key
+             - :code:`jwY9mv9U7DBfZe2/p5XXXXXXXXXXXXXXXXXXXXXX`
+           * - AWS Default Region Name
+             - :code:`us-west-1`
+           * - AWS Default Output Format
+             - :code:`json`
+
 
     e. You will then be shown the URLs where the tablet GUI will be hosted.  There will be a few of them.  We want one that starts with "192", rather than "127" or "10", because it will accept connections from other devices on the local network.  Write down the relevant address.
 
@@ -375,7 +403,8 @@ Setting up our interaction
 
             If you don't see an address with "192" at the beginning, try changing QT to a different wireless network.
 
-     f. Hit Ctrl+C to close the container.
+    f. Hit Ctrl+C to close the container.
+
 
 6. Run the interaction:
 
@@ -392,22 +421,23 @@ Setting up our interaction
 
         An example of the final message after the interaction run script.
 
-    c. Make the interaction run on startup:
 
-        i. List your Docker containers::
+7. Make the interaction run on startup:
 
-            docker container ls
+    a. List your Docker containers::
 
-        .. figure:: images/docker_container_list.png
-            :align: center
+        docker container ls
 
-            An example of running containers.
+    .. figure:: images/docker_container_list.png
+        :align: center
 
-        ii. Copy the "CONTAINER ID".
+        An example of running containers.
 
-        iii. Update the container's restart policy::
+    b. Copy the "CONTAINER ID".
 
-              docker container update --restart=unless-stopped <YOUR COPIED CONTAINER ID>
+    c. Update the container's restart policy::
+
+          docker container update --restart=unless-stopped <YOUR COPIED CONTAINER ID>
 
 .. note::
 
