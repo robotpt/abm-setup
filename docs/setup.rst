@@ -463,3 +463,50 @@ For either tablet supplied by LuxAI with QT, or any Android tablet for that matt
     ii. In 'Settings > Web Auto Reload', set 'Auto Reload after Page Error' to '2'.
 
 With this app, you can make it so that it's challenging to get out of the app or do other things on the tablet.  You can go into 'Settings > Kiosk Mode (PLUS)' to play with these settings.  A plus license is 6.90 EUR per device (about 7.50 USD).
+
+Reseting QT
+===========
+
+Full reset
+----------
+
+If you would like to delete the data stored on QT, as well as reset the Fitbit and AWS credentials, enter the following commands from QT's body computer::
+
+    cd ~/abm-setup/docker
+    docker-compose down -v
+
+Reset AWS credentials
+---------------------
+
+Just run the setup, again::
+
+    bash ~/abm-setup/docker/docker.sh setup
+    
+Reset Fitbit Credentials and/or interaction history
+---------------------------------------------------
+
+I will seek to make this easier for the full deployment, but for now, do the following:
+
+1. Open a terminal to the Docker environment::
+
+    bash ~/abm-setup/docker/docker.sh debug
+
+2. Remove what you'd like:
+
+    a. Remove the Fitbit credentials document from the terminal that pops up::
+
+        rm /root/state/fitbit_credentials.yaml
+    
+    b. Remove the interaction history to start again from QT introducing itself and setting up the interaction::
+    
+        rm /root/state/state_db.pkl
+    
+3. Exit the Docker terminal (you can just close it).
+
+To setup your Fitbit credentials, in your original terminal, run the setup script again::
+
+    bash ~/abm-setup/docker/docker.sh setup
+    
+.. note::
+
+    The Amazon Web Services credentials will show that they have values with the values in brackets (e.g., :code:`[XX..XXJUXB]`).  You can just hit *Enter* to leave these values unchanged.
