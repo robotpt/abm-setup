@@ -391,19 +391,7 @@ Setting up our interaction
            * - AWS Default Output Format
              - :code:`json`
 
-
-    e. You will then be shown the URLs where the tablet GUI will be hosted.  There will be a few of them.  We want one that starts with "192", rather than "127" or "10", because it will accept connections from other devices on the local network.  Write down the relevant address.
-
-        .. figure:: images/start_gui_server.png
-            :align: center
-
-            An example of the URLs that that the interaction will use.  In this case, we want to write down :code:`http://192.168.6.8:8082`.
-
-        .. note::
-
-            If you don't see an address with "192" at the beginning, try changing QT to a different wireless network.
-
-    f. Hit Ctrl+C to close the container.
+    e. Ignore the network information displayed and hit Ctrl+C to close the container.
 
 
 6. Run the interaction:
@@ -454,9 +442,11 @@ For either tablet supplied by LuxAI with QT, or any Android tablet for that matt
 
 2. Search for and download `Fully Kiosk Browser`.
 
-3. Start `Fully Kiosk browser` and set the start URL to the GUI URL that you wrote down earlier.
+3. Go to settings and connect to QT's network, for example, :code:`QT145`.
 
-4. Adjust settings in `Fully Kiosk browser`:
+4. Start `Fully Kiosk browser` and set the start URL 192.168.100.2:8082.
+
+5. Adjust settings in `Fully Kiosk browser`:
 
     i. In 'Settings > Web Zoom and Scaling', disable 'Enable Zoom'
 
