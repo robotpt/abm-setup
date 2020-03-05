@@ -442,7 +442,7 @@ For either tablet supplied by LuxAI with QT, or any Android tablet for that matt
 
 2. Search for and download `Fully Kiosk Browser`.
 
-3. Go to settings and connect to QT's network, for example, :code:`QT145`.
+3. Go to settings and connect to QT's network, for example, :code:`QT145`.  The password should be :code:`11111111` (eight ones).
 
 4. Start `Fully Kiosk browser` and set the start URL 192.168.100.2:8082.
 
