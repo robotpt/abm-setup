@@ -143,7 +143,6 @@ RUN \
 # Clone relevant repositories
 ENV commit_tag "abm_pilot"
 ENV git_options "-b ${commit_tag} --single-branch --recursive"
-ENV git_options "--recursive"
 RUN \
 	mkdir -p /root/ws/catkin_ws/src \
 	&& cd /root/ws/catkin_ws/src \
