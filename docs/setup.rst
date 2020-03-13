@@ -391,6 +391,9 @@ Setting up our interaction
            * - AWS Default Output Format
              - :code:`json`
 
+        .. warning::
+            If you receive an error after entering the Fitbit information, check that you have a device setup with the Fitbit account.
+
     e. Ignore the network information displayed and hit Ctrl+C to close the container.
 
 
