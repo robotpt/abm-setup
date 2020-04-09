@@ -1,5 +1,5 @@
-Setup
-=====
+Setuping up QT
+==============
 
 .. |version| replace:: abm_pilot
 

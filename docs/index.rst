@@ -9,4 +9,5 @@ Contents:
 
    setup
    troubleshooting
+   common_ops
    known_issues
