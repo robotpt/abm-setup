@@ -8,4 +8,5 @@ Contents:
    :glob:
 
    setup
+   troubleshooting
    known_issues
