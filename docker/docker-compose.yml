@@ -25,6 +25,7 @@ services:
       - pycharm_config:/root/.PyCharmCE2019.2/
       - aws_config:/root/.aws/
       - visual_code_config:/root/.visual_code/
+      - ros_logs:/root/.ros/log
       - ./config/setup_script.sh:/root/.setup_script.sh:ro
       - ./shared/:/root/shared/
       - ~/.gitconfig/:/root/.gitconfig/:ro
@@ -43,3 +44,4 @@ volumes:
   atom_config:
   visual_code_config:
   aws_config:
+  ros_logs:
