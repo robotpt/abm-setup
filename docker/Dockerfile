@@ -65,6 +65,8 @@ RUN \
 		ros-$ROS_DISTRO-gazebo-ros-control \
 		ros-$ROS_DISTRO-rosbridge-server \
 		ros-$ROS_DISTRO-audio-common \
+		ros-$ROS_DISTRO-mongodb-store \
+		ros-$ROS_DISTRO-mongodb-log \
 	&& rm -rf /var/lib/apt/lists/* 
 
 # Setup Python2 for cordial
@@ -149,8 +151,8 @@ RUN \
 	&& git clone ${git_options} https://github.com/robotpt/ros-abm-interaction \
 	&& git clone ${git_options} https://github.com/robotpt/qt-robot \
 	&& git clone ${git_options} https://github.com/robotpt/cordial \
-	&& git clone ${git_options} https://github.com/robotpt/ros-data-capture \
-	&& git clone https://github.com/strands-project/mongodb_store
+	&& git clone ${git_options} https://github.com/robotpt/ros-data-capture
+	#&& git clone https://github.com/strands-project/mongodb_store
 
 
 # Build repositories
