@@ -22,6 +22,9 @@ case "$MODE" in
 		echo "Running in the background"
 		ROS_MASTER_URI=$ROS_MASTER_URI docker-compose run -d $SERVICE_NAME bash -c "source ~/ws/catkin_ws/devel/setup.bash && roslaunch abm_interaction qt_abm_interaction.launch"
 		;;
+	terminal | terminal_debug | t )
+		ROS_MASTER_URI=$ROS_MASTER_URI docker-compose run $SERVICE_NAME bash -c "source ~/ws/catkin_ws/devel/setup.bash && bash"
+		;;
 	stop | kill | down )
 		docker-compose down
 		;;
@@ -31,6 +34,6 @@ case "$MODE" in
 		ROS_MASTER_URI=$ROS_MASTER_URI docker-compose run $SERVICE_NAME bash -c "terminator -e \"echo 'Entering Docker Container...' && bash\""
 		;;
 	* )
-		echo "Please enter 'setup', 'run', 'stop', or 'debug'"
+		echo "Please enter 'setup', 'run', 'stop', 'terminal', or 'debug'"
 		;;
 esac
