@@ -1,7 +1,7 @@
 Setuping up QT
 ==============
 
-.. |version| replace:: abm_pilot
+.. |version| replace:: master
 
 What you'll need
 ----------------
@@ -435,6 +435,13 @@ Setting up our interaction
     At this point, you should reboot QT.  You can do this by either pushing the button on the back of QT or typing :code:`sudo reboot` into the head computer's terminal.
 
     To test that things are setup correctly, you can take the URL for the GUI that you wrote down and type it into the web-browser on any device that's on the same network.  QT should begin asking you about your name, if it is your first interaction.
+
+
+Setting up remote access to QT
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get `Dataplicity <https://www.dataplicity.com/devices/>`_ login credentials from Audrow and sign on.  Go to the devices tab and then click "+ Add New Device".  Copy or enter this command into a terminal on QT's body PC and enter QT's password 'qtrobot'.  After that runs, remote access should be setup.  You can confirm this by clicking the added device and confirming that you can explore the file system (e.g., :code:`ls /home/qtrobot` and you should see familiar directories such as :code:`abm-setup`).
+
 
 Tablet
 ------
