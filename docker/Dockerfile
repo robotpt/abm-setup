@@ -92,6 +92,7 @@ RUN \
 		catkin_pkg \
 		boto3==1.12.11 \
 		soundfile==0.10.3.post1 \
+		speedtest-cli==2.1.2 \
 	&& rm -rf /var/lib/apt/lists/* 
 
 # Setup HTTP server
@@ -114,6 +115,7 @@ RUN \
 		python3-pip \
 		python3-yaml \
 		python3-virtualenv \
+		python3-vcstool \
 	&& python3.6 -m pip install --upgrade pip setuptools \
 	&& python3.6 -m pip install --ignore-installed docutils==0.15 \
 	&& python3.6 -m pip install \
@@ -143,16 +145,17 @@ RUN \
 
 
 # Clone relevant repositories
-ENV commit_tag "abm_pilot"
-ENV git_options "-b ${commit_tag} --single-branch --recursive"
+#ENV commit_tag "abm_pilot"
+# ENV git_options "-b ${commit_tag} --single-branch --recursive"
+ENV git_options "--recursive"
 RUN \
 	mkdir -p /root/ws/catkin_ws/src \
 	&& cd /root/ws/catkin_ws/src \
 	&& git clone ${git_options} https://github.com/robotpt/ros-abm-interaction \
 	&& git clone ${git_options} https://github.com/robotpt/qt-robot \
 	&& git clone ${git_options} https://github.com/robotpt/cordial \
-	&& git clone ${git_options} https://github.com/robotpt/ros-data-capture
-	#&& git clone https://github.com/strands-project/mongodb_store
+	&& git clone ${git_options} https://github.com/robotpt/ros-data-capture \
+	&& git clone https://github.com/RobotWebTools/rosbridge_suite 
 
 
 # Build repositories
