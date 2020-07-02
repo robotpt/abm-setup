@@ -7,7 +7,9 @@ In this case, the update process should be fairly straightforward.
 Turn on QT, open a terminal, go to the :code:`abm-setup` directory, and pull the updates::
 
     cd ~/abm-setup
+    git stash save
     git pull
+    git stash pop
 
 Then start the interaction as specified in the setup.
 The container rebuild and the updates will be applied.
