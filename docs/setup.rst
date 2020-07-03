@@ -1,5 +1,5 @@
-Setuping up QT
-==============
+Setting up QT
+=============
 
 .. |version| replace:: master
 
