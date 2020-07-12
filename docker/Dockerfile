@@ -34,11 +34,11 @@ RUN \
 
 # Setup Pycharm
 RUN \
-	wget https://download.jetbrains.com/python/pycharm-community-2019.2.5.tar.gz?_ga=2.206607891.1099553149.1574619599-1281313269.1574206878 \
+	wget https://download.jetbrains.com/python/pycharm-community-2020.1.2.tar.gz \
 	&& mv pycharm-community-* pycharm-community.tar.gz \
 	&& tar xfz pycharm-*.tar.gz -C /opt/ \
 	&& rm pycharm-community.tar.gz \
-	&& echo 'alias pycharm="/opt/pycharm-community-2019.2.5/bin/pycharm.sh"' >> /root/.bashrc 
+	&& echo 'alias pycharm="/opt/pycharm-community-2020.1.2/bin/pycharm.sh"' >> /root/.bashrc 
 
 # Install Visual Studio Code
 RUN \
@@ -79,9 +79,6 @@ RUN \
 	&& apt-get install -y \
 		python \
 		python-pip \
-		#python-pygame \
-		#python-requests \
-		#python-serial \
 		python-scipy \
 		python-gst0.10 \
 		python-mock \
