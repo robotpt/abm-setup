@@ -15,8 +15,6 @@ RUN \
 		wget \
 		tmux \
 		zsh \
-		curl \
-		wget \
 		vim \
 		sudo \
 		libgl1-mesa-glx \
@@ -107,7 +105,6 @@ RUN \
 	add-apt-repository -y ppa:deadsnakes/ppa \
 	&& apt-get update -y && apt-get upgrade -y \
 	&& apt-get install -y \
-		wget \
 		python3.6-dev \
 		python3-pip \
 		python3-yaml \
