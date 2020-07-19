@@ -139,16 +139,13 @@ RUN \
 
 
 # Clone relevant repositories
-#ENV commit_tag "abm_pilot"
-# ENV git_options "-b ${commit_tag} --single-branch --recursive"
-ENV git_options "--recursive"
 RUN \
 	mkdir -p /root/ws/catkin_ws/src \
 	&& cd /root/ws/catkin_ws/src \
-	&& git clone ${git_options} https://github.com/robotpt/ros-abm-interaction \
-	&& git clone ${git_options} https://github.com/robotpt/qt-robot \
-	&& git clone ${git_options} https://github.com/robotpt/cordial \
-	&& git clone ${git_options} https://github.com/robotpt/ros-data-capture \
+	&& git clone --recursive https://github.com/robotpt/ros-abm-interaction \
+	&& git clone -b abm_deployment https://github.com/robotpt/qt-robot \
+	&& git clone -b abm_deployment https://github.com/robotpt/cordial \
+	&& git clone https://github.com/robotpt/ros-data-capture \
 	&& git clone https://github.com/RobotWebTools/rosbridge_suite 
 
 
