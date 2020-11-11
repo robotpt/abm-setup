@@ -454,7 +454,7 @@ For either tablet supplied by LuxAI with QT, or any Android tablet for that matt
 
 3. Go to settings and connect to QT's network, for example, :code:`QT145`.  The password should be :code:`11111111` (eight ones).
 
-4. Start `Fully Kiosk browser` and set the start URL 192.168.100.2:8082.
+4. Start `Fully Kiosk browser` and set the start URL :code:`192.168.100.2:8082/index_only_user_input.html`. This URL will only show the parts of the GUI for user input. If you want to see the text the robot speaks, use the following web address: :code:`192.168.100.2:8082`.
 
 5. Adjust settings in `Fully Kiosk browser`:
 
